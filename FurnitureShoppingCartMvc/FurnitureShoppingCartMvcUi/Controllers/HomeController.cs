@@ -1,25 +1,26 @@
 using FurnitureShoppingCartMvcUi.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using FurnitureShoppingCartMvcUi.Data;
 
 namespace FurnitureShoppingCartMvcUi.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _dbContext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
         {
             _logger = logger;
+            _dbContext = dbContext;
         }
 
         public IActionResult Index()
         {
-            List<CatalogItem> catalogItems = new List<CatalogItem>()
-            {
-                new CatalogItem() { Id = 1, Name = "Item1", Price=3},
-                new CatalogItem() { Id = 1, Name = "Item2", Price=5},
-            };
+            var catalogItems = _dbContext.CatalogItems
+                .Select(e => e.Transform())
+                .ToList();
 
             return View(catalogItems);
         }

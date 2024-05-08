@@ -17,5 +17,12 @@ namespace FurnitureShoppingCartMvcUi.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<OrderStatus> OrderStatuses { get; set; }
+        public DbSet<CatalogItem> CatalogItems { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<CatalogItem>().Property(x => x.Price).HasPrecision(9, 2);
+            base.OnModelCreating(builder);
+        }
     }
 }

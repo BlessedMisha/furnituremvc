@@ -1,5 +1,6 @@
 ﻿using Microsoft.Build.Framework;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace FurnitureShoppingCartMvcUi.Models
 {
@@ -18,10 +19,33 @@ namespace FurnitureShoppingCartMvcUi.Models
     }
 }
 
+[Table("CatalogItem")]
 public class CatalogItem
 {
     public int Id { get; set; }
     public string Name { get; set; }
     public decimal Price { get; set; }
-    public string ImageUrl { get; set; }
+    public string ImageUrl { get; set; } 
+}
+
+public class CatalogItemModel
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+    public string FullImageUrl { get; set; }
+}
+
+public static class TransformExtensions
+{
+    public static CatalogItemModel Transform(this CatalogItem entity)
+    {
+        return new CatalogItemModel
+        {
+            Id = entity.Id,
+            Name = entity.Name,
+            Price = entity.Price,
+            FullImageUrl = entity.ImageUrl
+        };
+    }
 }
