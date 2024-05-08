@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FurnitureShoppingCartMvcUi</title>
+   @*  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+   <link rel="stylesheet" type="text/css" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/FurnitureShoppingCartMvcUi.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+         <nav id="myNavbar">
+                    <a href="404.html" class="nav-logotyp">
+                        mif works
+                    </a alt="union">
+                    <div class="nav-left">
+                        <div id="navLeft">
+                            <div id="iconopen">
+                                <i class="fa-solid fa-bars" style="color: #000000;"></i>
+                            </div>
+                            <div class="hide" id="iconclose">
+                                <i class="fa-solid fa-xmark" style="color: #000000;"></i>
+                            </div>
+                        </div>
+                        <p class="nav-text">shop</p>
+                    </div>
+                    <ul class="mobile-menu hide" id="menu">
+                        <li><a href="aboutus.html">About us</a></li>
+                        <li><a href="404.html">Products</a></li>
+                        <li><a href="shopall.html">Shopall</a></li>
+                        <li><a href="404.html">Articles</a></li>
+                        <li><a href="blog.html">Our club</a></li>
+                    </ul>
+                    <ul class="compnav">
+                        <li><a href="aboutus.html">About us</a></li>
+                        <li><a href="404.html">Products</a></li>
+                        <li><a href="shopall.html">Shopall</a></li>
+                        <li><a href="404.html">Articles</a></li>
+                        <li><a href="blog.html">Our club</a></li>
+                    </ul>
+                    <a href="404.html" class="nav-right">
+                        <p class="nav-right">bag</p>
+                        <p class="bag-number">0</p>
+                    </a>
+                    <partial name="_LoginPartial" />
+                </nav>
+      @*   <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FurnitureShoppingCartMvcUi</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav> *@
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        @* <div class="container">
+            &copy; 2024 - FurnitureShoppingCartMvcUi - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div> *@
+        <div class="footer-planshet">
+                <div class="footer-blocks">
+                    <div class="footer-card">
+                        <p class="rozdil-footer">store</p>
+                        <a href="">Home</a>
+                        <a href="">About us</a>
+                        <a href="">Lookbook</a>
+                        <a href="">Collections</a>
+                    </div>
+                    <div class="footer-card">
+                        <p class="rozdil-footer">help</p>
+                        <a href="">Contact</a>
+                        <a href="">Login & Account</a>
+                        <a href="">Privacy Policy</a>
+                        <a href="">Refund Policy</a>
+                    </div> 
+                </div>
+            </div>
+            <div class="arusa-footer-block">
+                <div class="footer-social">
+                    <p class="rozdil-footer">Social Media</p>
+                    <a href="https://www.instagram.com/misha.fychak/" target="_blank">
+                    <i class="fa-brands fa-instagram fa-beat"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=100009585455901&locale=uk_UA" target="_blank">
+                    <i class="fa-brands fa-facebook fa-spin"></i>
+                </a>
+                <a href="https://twitter.com/MFychak82075" target="_blank">
+                    <i class="fa-brands fa-x-twitter fa-spin fa-spin-reverse"></i>
+                </a>
+                </div>
+            </div>
+            <div class="footer-image">
+                <img src="media/Union-footer.webp" alt="presence">
+            </div>
+            <div class="arusa-footer-block">
+                <p class="arusa-footer">© arusa 2022 | misha fychak</p>
+            </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
