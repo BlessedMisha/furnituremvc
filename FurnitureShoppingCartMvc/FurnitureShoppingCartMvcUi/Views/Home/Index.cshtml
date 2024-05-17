@@ -37,6 +37,7 @@
                         <p class="bag-number">0</p>
                     </a>
                 </nav> *@
+
                 <div class="welcome-block">
                     <h4 class="slogan hvr-shrink">Seamless <span class="furniture">furniture</span> <br>with natural
                         fabrics</h4>
@@ -93,22 +94,56 @@
             <div class="enjoy-block">
                 <p class="enjoy-text" style="font-size: 36px;">Enjoy our feature products</p>
             </div>
-            <div class="product-row scrollreveal">
-                <div class="cards-blocks">
-                    @foreach(var item in Model)
-                    {
-                        <div class="card hvr-shrink scrollreveal">
-                            <img src="@item.FullImageUrl" alt="presence" width="100%">
-                            <div class="product-text-row" data-catalogItemId="@item.Id">
-                                <p class="product-name">@item.Name</p>
-                                <p class="product-price">@item.Price</p>
-                                <button class="btnAddToBasket"> Add To Basket</button>
-                            </div>
-                        </div>    
-                    }
-                </div>
-                </div>
+        <div class="product-row scrollreveal">
+            <div class="cards-blocks">
+                @foreach (var item in Model.Take(2)) // Відобразити перші 4 предмети
+                {
+                    <div class="card hvr-shrink scrollreveal">
+                        <img src="@item.FullImageUrl" alt="presence" width="100%">
+                        <div class="product-text-row"  data-catalogItemId="@item.Id">
+                            <p class="product-name">@item.Name</p>
+                            <p class="product-price">@item.Price</p>
+                            <button class="btnAddToBasket"> Add To Basket</button>
+                        </div>
+                    </div>
+                }
             </div>
+            <div class="cards-blocks">
+                @foreach (var item in Model.Skip(2).Take(2)) // Пропустити перші 4 предмети і відобразити наступні 4
+                {
+                    <div class="card hvr-shrink scrollreveal">
+                        <img src="@item.FullImageUrl" alt="presence" width="100%">
+                        <div class="product-text-row">
+                            <p class="product-name">@item.Name</p>
+                            <p class="product-price">@item.Price</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        @section scripts {
+            <script>
+                function addToCart(productId) {
+                    fetch('/CatalogItem/AddToCart/' + productId, { method: 'POST' })
+                        .then(response => {
+                            if (response.ok) {
+                                // Логіка для випадку успішного додавання товару до корзини
+                                // Наприклад, відобразити повідомлення про успішне додавання або оновити вміст корзини на сторінці
+                                console.log("Товар додано до корзини!");
+                            } else {
+                                // Логіка для випадку помилки
+                                console.error("Помилка при додаванні товару до корзини!");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Помилка: " + error);
+                        });
+                }
+            </script>
+
+        }
+            </div>
+        </div>
             <a href="shopall.html" class="button-shop">shop all</a>
         </div>
         <!-- planshet -->
@@ -343,7 +378,7 @@
                 <a href="#shopall" class="product-shop">shop all</a>
             </div>
         </div>
-        <div class="detail-section scrollreveal">
+        @* <div class="detail-section scrollreveal">
             <div class="detailtext-block">
                 <p class="detail-text">Every detail matter</p>
                 <p class="detail-add">we are specialized in adornments,that bring charm to any environment</p>
@@ -375,7 +410,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> *@
         <div>
             <!-- planshet -->
             <div class="second-chair-section-planshet">

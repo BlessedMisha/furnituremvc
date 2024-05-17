@@ -4,10 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FurnitureShoppingCartMvcUi</title>
-   @*  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
    <link rel="stylesheet" type="text/css" href="~/css/style.css">
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/FurnitureShoppingCartMvcUi.styles.css" asp-append-version="true" />
+    @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
+    @* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> *@
+    <link type="media/png" sizes="16x16" rel="icon" href="media/x-icon.png">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="scripts/geo.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+@*     <link rel="stylesheet" href="~/FurnitureShoppingCartMvcUi.styles.css" asp-append-version="true" /> *@
 </head>
 <body>
     <header>
@@ -35,7 +40,7 @@
                     </ul>
                     <ul class="compnav">
                         <li><a href="aboutus.html">About us</a></li>
-                        <li><a href="404.html">Products</a></li>
+                        <li><a asp-controller="shopcart" asp-action="Index">Products</a></li>
                         <li><a href="shopall.html">Shopall</a></li>
                         <li><a href="404.html">Articles</a></li>
                         <li><a href="blog.html">Our club</a></li>
@@ -43,8 +48,9 @@
                     <a href="404.html" class="nav-right">
                         <p class="nav-right">bag</p>
                         <p class="bag-number">0</p>
+               
                     </a>
-                    <partial name="_LoginPartial" />
+    <partial name="_LoginPartial" />
                 </nav>
       @*   <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -117,9 +123,9 @@
                 <p class="arusa-footer">© arusa 2022 | misha fychak</p>
             </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @* <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script> *@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
