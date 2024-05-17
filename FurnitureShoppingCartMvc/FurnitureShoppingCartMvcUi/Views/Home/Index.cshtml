@@ -99,9 +99,10 @@
                     {
                         <div class="card hvr-shrink scrollreveal">
                             <img src="@item.FullImageUrl" alt="presence" width="100%">
-                            <div class="product-text-row">
+                            <div class="product-text-row" data-catalogItemId="@item.Id">
                                 <p class="product-name">@item.Name</p>
                                 <p class="product-price">@item.Price</p>
+                                <button class="btnAddToBasket"> Add To Basket</button>
                             </div>
                         </div>    
                     }
@@ -487,6 +488,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="js/wrapperbrand.js"></script>
+    <script src="js/basket.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>var swiper = new Swiper(".mySwiper", {
             direction: "horizontal",
