@@ -29,7 +29,21 @@ namespace FurnitureShoppingCartMvcUi.Controllers
         {
             return View();
         }
+        public IActionResult Shopcart()
+        {
+            // Цей метод може відображати сторінку shopcart.cshtml або виконувати інші дії
+            // Наприклад, обробку даних корзини покупок або виклик іншого представлення
+            return View();
+        }
 
+        public IActionResult Shopall()
+        {
+            var catalogItems = _dbContext.CatalogItems
+                .Select(e => e.Transform())
+                .ToList();
+
+            return View(catalogItems);
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

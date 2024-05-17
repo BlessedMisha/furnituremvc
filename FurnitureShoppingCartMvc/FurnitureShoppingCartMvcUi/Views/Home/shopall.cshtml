@@ -1,0 +1,53 @@
+﻿@model List<CatalogItemModel>
+<div class="body-wrapper">
+        <a href="#" class="gotopbtn">
+            <ion-icon name="arrow-up-outline"></ion-icon>
+        </a>
+        <div class="feature-products" id="feature-products">
+            <div class="enjoy-block">
+                <h1 class="enjoy-text">All</h1>
+            </div>
+            <div class="allproducts">
+                <div class="all_21prod">
+                    <p class="all_name">21 Products</p>
+                </div>
+                <div class="all_search">
+                    <p class="all_name">Search</p>
+                </div>
+                <div class="all_filters">
+                    <p class="all_name">Filters</p>
+                    <ul class="all_filternames">
+                        <li>Decors</li>
+                        <li>Ceramics</li>
+                        <li>Chairs</li>
+                        <li>Lamp</li>
+                    </ul>
+                </div>
+                <div class="all_sortby">
+                    <p class="all_name">Sort by</p>
+                    <ul class="all_filternames">
+                        <li>Price : Low to high</li>
+                        <li>Price: high to low</li>
+                        <li>A-Z</li>
+                        <li>Z-A</li>
+                        <li>Best Selling</li>
+                    </ul>
+                </div>
+                <div class="product-row">
+                    <div class="cards-blocks">
+                        @foreach (var item in Model) // Пройтися по всіх елементах моделі
+                        {
+
+                            <div class="card hvr-shrink scrollreveal">
+                                <img src="/@item.FullImageUrl" alt="presence" width="100%">
+                                <article class="product-text-row">
+                                    <p class="product-name">@item.Name</p>
+                                    <p class="product-price">@item.Price</p>
+                                </article>
+                            </div>
+                        }
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>

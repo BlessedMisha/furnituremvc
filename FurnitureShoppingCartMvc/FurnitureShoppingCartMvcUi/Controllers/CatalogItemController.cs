@@ -18,6 +18,12 @@ namespace FurnitureShoppingCartMvcUi.Controllers
             var catalogItemModels = catalogItems.Select(item => item.Transform()).ToList();
             return View(catalogItemModels);
         }
+        public IActionResult Shopall()
+        {
+            var catalogItems = _context.CatalogItems.ToList();
+            var catalogItemModels = catalogItems.Select(item => item.Transform()).ToList();
+            return View(catalogItemModels);
+        }
 
         [HttpPost]
         public IActionResult AddToCart(int id)
@@ -31,7 +37,7 @@ namespace FurnitureShoppingCartMvcUi.Controllers
             // Додавання товару до корзини
             // Це може відрізнятися в залежності від вашої реалізації корзини
 
-            return RedirectToAction("Index", "Cart"); // Перенаправте користувача на сторінку корзини
+            return RedirectToAction("Index", "shopcart"); // Перенаправте користувача на сторінку корзини
         }
     }
 }

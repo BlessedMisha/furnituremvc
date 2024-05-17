@@ -46,5 +46,16 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+app.MapControllerRoute(
+    name: "shopcart",
+    pattern: "{controller=Home}/{action=Shopcart}");
+app.MapControllerRoute(
+    name: "shopall",
+    pattern: "{controller=Home}/{action=Shopall}");
+app.MapControllerRoute(
+    name: "AddToCart",
+    pattern: "CatalogItem/AddToCart/{id}",
+    defaults: new { controller = "CatalogItem", action = "AddToCart" }
+);
 
 app.Run();
