@@ -20,6 +20,7 @@ namespace FurnitureShoppingCartMvcUi.Models
         public Colection Colection { get; set; }
         public List<OrderDetail> OrderDetail  { get; set; }
         public List<CartDetail> CartDetail { get; set; }
-
+        [NotMapped]
+        public string ColectionName { get; set; }
     }
 }
