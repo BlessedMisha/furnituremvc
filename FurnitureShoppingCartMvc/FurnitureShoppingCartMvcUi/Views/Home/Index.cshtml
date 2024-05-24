@@ -121,7 +121,7 @@
                 }
             </div>
         </div>
-        @section scripts {
+       @*  @section scripts {
             <script>
                 function addToCart(productId) {
                     fetch('/CatalogItem/AddToCart/' + productId, { method: 'POST' })
@@ -139,7 +139,7 @@
                             console.error("Помилка: " + error);
                         });
                 }
-            </script>
+            </script> *@
 
         }
             </div>
@@ -536,7 +536,6 @@
                 clickable: true,
             },
         });</script>
-    <script src="js/script.js"></script>
     <script>
         !function (t, e, c, n) {
             var s = e.createElement(c);

@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <Content Remove="Views\Home\Index - Copy.cshtml" />
+    <Content Remove="wwwroot\js\basketshow - Copy.js" />
     <Content Remove="wwwroot\js\script5.js" />
   </ItemGroup>
 

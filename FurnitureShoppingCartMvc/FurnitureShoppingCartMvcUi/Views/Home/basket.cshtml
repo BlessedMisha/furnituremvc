@@ -1,0 +1,28 @@
+﻿@model List<CatalogItemModel>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>basket</title>
+    @* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> *@
+    @* <link rel="stylesheet" type="text/css" href="~/css/style.css"> *@
+    <script src="/js/basketshow.js"></script>
+</head>
+<body>
+    <section class="basket">
+        <h2>Order Summary</h2>
+        <div class="basket-products">
+        @*  show items *@
+        </div>
+        <div>
+            <div>
+                <p>Grand Total incl. tax</p>
+                <p>400$</p>
+            </div>
+            <button id="checkout">checkout</button>
+        </div>
+    </section>
+
+</body>
+</html>
