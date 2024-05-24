@@ -38,12 +38,13 @@
                         @foreach (var item in Model) // Пройтися по всіх елементах моделі
                         {
 
-                            <div class="card hvr-shrink scrollreveal">
+                        <div class="card hvr-shrink scrollreveal" data-catalogItemId=@item.Id>
                                 <img src="/@item.FullImageUrl" alt="presence" width="100%">
                                 <article class="product-text-row">
                                     <p class="product-name">@item.Name</p>
                                     <p class="product-price">@item.Price</p>
                                 </article>
+                            <button class="btnAddToBasket"> Add To Basket</button>
                             </div>
                         }
                  </div>
@@ -51,3 +52,4 @@
         </div>
     </div>
 </div>
+<script src="js/basket.js"></script>

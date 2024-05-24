@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const navbar = document.getElementById("myNavbar");
         const scrollPosition = window.scrollY;
 
-        if (scrollPosition > 10) {
+        if (scrollPosition > 0) {
             navbar.classList.add("fixed");
         } else {
             navbar.classList.remove("fixed");

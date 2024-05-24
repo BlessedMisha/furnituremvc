@@ -52,10 +52,5 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "shopall",
     pattern: "{controller=Home}/{action=Shopall}");
-app.MapControllerRoute(
-    name: "AddToCart",
-    pattern: "CatalogItem/AddToCart/{id}",
-    defaults: new { controller = "CatalogItem", action = "AddToCart" }
-);
 
 app.Run();

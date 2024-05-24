@@ -924,15 +924,15 @@ nav {
   border: 1px solid #dfdedb;
   border-radius: 8px;
 }
-input[type="text"]::placeholder {
-  color: #f5f4f3;
+.your-email input[type="text"]::placeholder {
+    color: #f5f4f3;
 }
 
-input[type="text"] {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  color: #f5f4f3;
+.your-email input[type="text"] {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #f5f4f3;
 }
 /* 10 storinka */
 footer {

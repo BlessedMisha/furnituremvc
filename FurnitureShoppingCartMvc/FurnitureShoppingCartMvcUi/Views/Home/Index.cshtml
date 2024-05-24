@@ -98,9 +98,9 @@
             <div class="cards-blocks">
                 @foreach (var item in Model.Take(2)) // Відобразити перші 4 предмети
                 {
-                    <div class="card hvr-shrink scrollreveal">
+                    <div class="card hvr-shrink scrollreveal" data-catalogItemId=@item.Id>
                         <img src="@item.FullImageUrl" alt="presence" width="100%">
-                        <div class="product-text-row"  data-catalogItemId="@item.Id">
+                        <div class="product-text-row">
                             <p class="product-name">@item.Name</p>
                             <p class="product-price">@item.Price</p>
                             <button class="btnAddToBasket"> Add To Basket</button>
@@ -111,37 +111,17 @@
             <div class="cards-blocks">
                 @foreach (var item in Model.Skip(2).Take(2)) // Пропустити перші 4 предмети і відобразити наступні 4
                 {
-                    <div class="card hvr-shrink scrollreveal">
+                    <div class="card hvr-shrink scrollreveal" data-catalogItemId=@item.Id>
                         <img src="@item.FullImageUrl" alt="presence" width="100%">
                         <div class="product-text-row">
                             <p class="product-name">@item.Name</p>
                             <p class="product-price">@item.Price</p>
+                            <button class="btnAddToBasket"> Add To Basket</button>
                         </div>
                     </div>
                 }
             </div>
         </div>
-       @*  @section scripts {
-            <script>
-                function addToCart(productId) {
-                    fetch('/CatalogItem/AddToCart/' + productId, { method: 'POST' })
-                        .then(response => {
-                            if (response.ok) {
-                                // Логіка для випадку успішного додавання товару до корзини
-                                // Наприклад, відобразити повідомлення про успішне додавання або оновити вміст корзини на сторінці
-                                console.log("Товар додано до корзини!");
-                            } else {
-                                // Логіка для випадку помилки
-                                console.error("Помилка при додаванні товару до корзини!");
-                            }
-                        })
-                        .catch(error => {
-                            console.error("Помилка: " + error);
-                        });
-                }
-            </script> *@
-
-        }
             </div>
         </div>
             <a href="shopall.html" class="button-shop">shop all</a>

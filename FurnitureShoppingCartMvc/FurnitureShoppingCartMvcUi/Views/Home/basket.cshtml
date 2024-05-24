@@ -1,28 +1,90 @@
 ﻿@model List<CatalogItemModel>
+@{
+    Layout = null;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>basket</title>
-    @* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> *@
-    @* <link rel="stylesheet" type="text/css" href="~/css/style.css"> *@
-    <script src="/js/basketshow.js"></script>
+       <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShopCart</title>
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+   <link rel="stylesheet" type="text/css" href="~/css/style.css">
+   <link rel="stylesheet" type="text/css" href="~/css/basket.css">
+    @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link type="media/png" sizes="16x16" rel="icon" href="/media/x-icon.png">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="js/geo.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
+    <header>
+         <nav id="myNavbar">
+                    <a href="404.html" class="nav-logotyp">
+                        mif works
+                    </a alt="union">
+                    <div class="nav-left">
+                        <div id="navLeft">
+                            <div id="iconopen">
+                                <i class="fa-solid fa-bars" style="color: #000000;"></i>
+                            </div>
+                            <div class="hide" id="iconclose">
+                                <i class="fa-solid fa-xmark" style="color: #000000;"></i>
+                            </div>
+                        </div>
+                        <p class="nav-text">shop</p>
+                    </div>
+                    <ul class="mobile-menu hide" id="menu">
+                        <li><a href="aboutus.html">About us</a></li>
+                        <li><a href="404.html">Products</a></li>
+                        <li><a href="shopall.html">Shopall</a></li>
+                        <li><a href="404.html">Articles</a></li>
+                        <li><a href="blog.html">Our club</a></li>
+                    </ul>
+                    <ul class="compnav">
+                        <li><a href="aboutus.html">About us</a></li>
+                        <li><a href="/Home/basket">Products</a></li>
+                        <li><a href="/Home/shopall">Shopall</a></li>
+                        <li><a href="404.html">Articles</a></li>
+                        <li><a href="blog.html">Our club</a></li>
+                    </ul>
+                    <a href="404.html" class="nav-right">
+                        <p class="nav-right">bag</p>
+                        <p class="bag-number">0</p>
+               
+                    </a>
+    <partial name="_LoginPartial" />
+                </nav>
+    </header>
     <section class="basket">
-        <h2>Order Summary</h2>
-        <div class="basket-products">
-        @*  show items *@
-        </div>
-        <div>
-            <div>
-                <p>Grand Total incl. tax</p>
-                <p>400$</p>
+        <div class="order-info">
+            <h2>Order Summary</h2>
+            <div id="basketProducts" class="basket-products">
+                <!-- Товари будуть динамічно додані сюди -->
             </div>
-            <button id="checkout">checkout</button>
+        </div>
+        <div class="block-pc">
+            <div class="order-details">
+                <h2>Contact information</h2>
+                <div class="client-info">
+                     <input type="text" placeholder="First Name" id="firstName">
+                    <input type="text" placeholder="Second Name" id="lastName">
+                    <input type="email" placeholder="Email" id="email">
+                    <input type="tel" placeholder="Phone number" id="phone" maxlength="12">
+                    <input type="tel" placeholder="Adress" id="Adress" maxlength="25">
+                </div>
+            </div>
+            <div class="end-order">
+                <div class="total-order">
+                    <p class="title-to">Grand Total incl. tax</p>
+                    <p id="total-price">$0.00</p>
+                </div>
+                <button type="submit" id="checkout">checkout</button>
+            </div>
         </div>
     </section>
-
+    <script src="~/js/basketshow.js"></script>
+     <script src="~/js/script.js"></script>
 </body>
 </html>

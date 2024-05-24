@@ -8,17 +8,18 @@
         basket = JSON.parse(localBasketStr);
         console.log("Basket loaded from local storage:", basket);
         updateTotalQty();
+        updateTotalPrice(); // Додано для обрахунку загальної ціни при завантаженні сторінки
     }
 
     displayBasketItems();
 
     function displayBasketItems() {
-        let basketContainer = document.querySelector('.basket-products');
+        let basketContainer = document.querySelector('.order-info');
         if (!basketContainer) {
             console.error('Basket container not found');
             return;
         }
-        basketContainer.innerHTML = ''; // Очищення контейнера перед вставкою нових елементів
+        basketContainer.innerHTML = '';
 
         if (basket.selectedItems.length === 0) {
             console.log("Basket is empty");
@@ -27,11 +28,11 @@
                 console.log("Displaying item:", item);
                 let productHTML = `
                 <div class="basket-product" data-catalogItemId="${item.itemId}">
-                    <img src="${item.imageUrl}" alt="img">
+                    <img src="/${item.imageUrl}" alt="img">
                     <div class="productB-info">
                         <p class="name">${item.name}</p>
                         <p class="size">Size: 100*100</p>
-                        <p class="price">${item.price}</p>
+                        <p class="price">$${item.price}</p>
                     </div>
                     <div class="productB-actions">
                         <a href="#" class="remove-item"><i class="fa-solid fa-xmark" style="color: rgb(71, 71, 71);"></i></a>
@@ -46,7 +47,6 @@
                 basketContainer.insertAdjacentHTML('beforeend', productHTML);
             });
 
-            // Додаємо обробники подій для кнопок increment, decrement та remove
             document.querySelectorAll('.increment').forEach(button => {
                 button.addEventListener('click', incrementQty);
             });
@@ -61,7 +61,6 @@
         }
     }
 
-
     function incrementQty() {
         let catalogId = this.closest('.basket-product').getAttribute('data-catalogItemId');
         let item = basket.selectedItems.find(i => i.itemId == catalogId);
@@ -70,6 +69,7 @@
             localStorage.setItem("basket", JSON.stringify(basket));
             displayBasketItems();
             updateTotalQty();
+            updateTotalPrice(); // Оновлюємо загальну ціну після збільшення кількості
         }
     }
 
@@ -81,6 +81,7 @@
             localStorage.setItem("basket", JSON.stringify(basket));
             displayBasketItems();
             updateTotalQty();
+            updateTotalPrice(); // Оновлюємо загальну ціну після зменшення кількості
         }
     }
 
@@ -90,6 +91,7 @@
         localStorage.setItem("basket", JSON.stringify(basket));
         displayBasketItems();
         updateTotalQty();
+        updateTotalPrice(); // Оновлюємо загальну ціну після видалення товару
     }
 
     function updateTotalQty() {
@@ -104,4 +106,17 @@
             console.error('Bag number element not found');
         }
     }
+    function updateTotalPrice() {
+        if (basket.selectedItems == null) {
+            return;
+        }
+        let totalPrice = basket.selectedItems.map(i => parseFloat(i.price) * i.qty).reduce((total, price) => total + price, 0);
+        let totalPriceElement = document.getElementById('total-price');
+        if (totalPriceElement) {
+            totalPriceElement.textContent = `$${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(totalPrice)}`;
+        } else {
+            console.error('Total price element not found');
+        }
+    }
+
 });
