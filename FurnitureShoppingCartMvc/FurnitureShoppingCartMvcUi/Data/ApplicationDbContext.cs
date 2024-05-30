@@ -21,10 +21,7 @@ namespace FurnitureShoppingCartMvcUi.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            // Configure ItemPrice and TotalPrice properties of Order entity
-            builder.Entity<Order>()
-                .Property(o => o.ItemPrice)
-                .HasColumnType("decimal(18,2)");
+           
 
             builder.Entity<Order>()
                 .Property(o => o.TotalPrice)

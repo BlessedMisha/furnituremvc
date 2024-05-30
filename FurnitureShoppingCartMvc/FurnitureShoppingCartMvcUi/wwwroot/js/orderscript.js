@@ -6,17 +6,27 @@
         let phone = document.querySelector("#phone").value;
         let address = document.querySelector("#address").value;
 
+        let items = [];
+        document.querySelectorAll(".basket-product").forEach(product => {
+            let item = {
+                catalogItemId: parseInt(product.getAttribute("data-catalogitemid")),
+                itemName: product.querySelector(".name").textContent,
+                itemPrice: parseFloat(product.querySelector(".price").textContent.replace("$", "")),
+                quantity: parseInt(product.querySelector(".count").textContent)
+            };
+            items.push(item);
+        });
+
+        let totalPrice = items.reduce((sum, item) => sum + (item.itemPrice * item.quantity), 0);
+
         let orderData = {
             firstName: firstName,
             lastName: lastName,
             email: email,
             phone: phone,
             address: address,
-            totalPrice: parseFloat(document.getElementById("total-price").textContent.replace("$", "")),
-            catalogItemId: parseInt(document.querySelector(".basket-product").getAttribute("data-catalogitemid")),
-            itemName: document.querySelector(".name").textContent,
-            itemPrice: parseFloat(document.querySelector(".price").textContent.replace("$", "")),
-            quantity: parseInt(document.querySelector(".count").textContent)
+            totalPrice: totalPrice,
+            items: items // Відправляємо всі товари
         };
 
         fetch("/Order/CreateOrder", {
@@ -34,10 +44,32 @@
             })
             .then(data => {
                 console.log("Order created successfully with ID:", data.orderId);
-                // Додайте будь-які дії після успішного замовлення, наприклад, очищення кошика
+                initiateLiqPay(data.data, data.signature);
             })
             .catch(error => {
                 console.error("There was a problem with your fetch operation:", error.message);
             });
     });
+
+    function initiateLiqPay(data, signature) {
+        let form = document.createElement("form");
+        form.method = "POST";
+        form.action = "https://www.liqpay.ua/api/3/checkout";
+        form.acceptCharset = "utf-8";
+
+        let inputData = document.createElement("input");
+        inputData.type = "hidden";
+        inputData.name = "data";
+        inputData.value = data;
+        form.appendChild(inputData);
+
+        let inputSignature = document.createElement("input");
+        inputSignature.type = "hidden";
+        inputSignature.name = "signature";
+        inputSignature.value = signature;
+        form.appendChild(inputSignature);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
 });
