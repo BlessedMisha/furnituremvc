@@ -12,7 +12,7 @@
     }
 
     displayBasketItems();
-
+   
     function displayBasketItems() {
         let basketContainer = document.querySelector('.order-info');
         if (!basketContainer) {
@@ -28,10 +28,10 @@
                 console.log("Displaying item:", item);
                 let productHTML = `
                 <div class="basket-product" data-catalogItemId="${item.itemId}">
-                    <img src="/${item.imageUrl}" alt="img">
+                    <img src="${item.imageUrl}" alt="img">
                     <div class="productB-info">
                         <p class="name">${item.name}</p>
-                        <p class="size">Size: 100*100</p>
+                        <p class="size">Size: ${item.size}</p>
                         <p class="price">$${item.price}</p>
                     </div>
                     <div class="productB-actions">

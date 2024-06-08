@@ -12,7 +12,7 @@
     text-transform: uppercase;
     font-size: 15px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: burlywood;
+    /*background-color: burlywood;*/
 }
     .loginNav li a {
         color: black;

@@ -23,15 +23,17 @@
 
         let nameElement = productRow.querySelector('.product-name');
         let priceElement = productRow.querySelector('.product-price');
+        let sizeElement = productRow.querySelector('.product-size');
         let imageElement = productRow.querySelector('img');
         let catalogId = productRow.getAttribute('data-catalogItemId');
 
-        if (nameElement && priceElement && catalogId && imageElement) {
+        if (nameElement && priceElement && catalogId && imageElement && sizeElement) {
             let name = nameElement.textContent.trim() || 'Unknown';
             let price = priceElement.textContent.trim() || 'Unknown';
             let imageUrl = imageElement.getAttribute('src') || '';
+            let size = sizeElement.textContent.trim() || 'unknown';
 
-            console.log("Adding item to basket:", { catalogId, name, price, imageUrl });
+            console.log("Adding item to basket:", { catalogId, name, price, imageUrl, size });
 
             let item = basket.selectedItems.find(i => i.itemId == catalogId);
             if (item == null) {
@@ -39,6 +41,7 @@
                     itemId: catalogId,
                     name: name,
                     price: price,
+                    size: size,
                     qty: 1,
                     imageUrl: imageUrl
                 };

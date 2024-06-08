@@ -52,5 +52,9 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "shopall",
     pattern: "{controller=Home}/{action=Shopall}");
+app.MapControllerRoute(
+    name: "productDetails",
+    pattern: "{controller=Home}/{action=ProductDetails}/{id?}");
+
 
 app.Run();

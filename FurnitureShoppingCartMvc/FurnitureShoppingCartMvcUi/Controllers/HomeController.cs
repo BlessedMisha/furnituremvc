@@ -24,7 +24,17 @@ namespace FurnitureShoppingCartMvcUi.Controllers
 
             return View(catalogItems);
         }
-            
+        public IActionResult ProductDetails(int id)
+        {
+            var catalogItem = _dbContext.CatalogItems.Find(id);
+            if (catalogItem == null)
+            {
+                return NotFound();
+            }
+
+            return View("ProductDetails", catalogItem.Transform()); // Передача моделі каталогового елемента на сторінку ProductDetails.cshtml
+        }
+
         public IActionResult Privacy()
         {
             return View();

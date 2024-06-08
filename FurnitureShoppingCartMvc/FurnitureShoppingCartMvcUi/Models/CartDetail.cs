@@ -24,14 +24,19 @@ public class CatalogItem
 {
     public int Id { get; set; }
     public string Name { get; set; }
+    public string Size{ get; set; }
+    public string Description { get; set; }
     public decimal Price { get; set; }
-    public string ImageUrl { get; set; } 
+    public string ImageUrl { get; set; }
+
 }
 
 public class CatalogItemModel
 {
     public int Id { get; set; }
     public string Name { get; set; }
+    public string Size { get; set; }
+    public string Description { get; set; }
     public decimal Price { get; set; }
     public string FullImageUrl { get; set; }
 }
@@ -45,7 +50,9 @@ public static class TransformExtensions
             Id = entity.Id,
             Name = entity.Name,
             Price = entity.Price,
-            FullImageUrl = entity.ImageUrl
+            FullImageUrl = entity.ImageUrl,
+            Size = entity.Size,
+            Description = entity.Description,
         };
     }
 }

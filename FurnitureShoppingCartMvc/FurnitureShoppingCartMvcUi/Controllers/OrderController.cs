@@ -71,7 +71,7 @@ namespace FurnitureShoppingCartMvcUi.Controllers
                 currency = currency,
                 description = "Order Payment",
                 order_id = orderId.ToString(),
-                result_url = "http://localhost:5000/Order/Success",  
+                result_url = "http://localhost:5241/",  
                 server_url = "http://localhost:5000/Order/Callback"  
             };
 

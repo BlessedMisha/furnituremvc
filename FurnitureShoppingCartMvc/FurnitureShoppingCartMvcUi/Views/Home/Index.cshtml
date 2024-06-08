@@ -97,14 +97,19 @@
         <div class="product-row scrollreveal">
             <div class="cards-blocks">
                 @foreach (var item in Model.Take(2)) // Відобразити перші 4 предмети
-                {
-                    <div class="card hvr-shrink scrollreveal" data-catalogItemId=@item.Id>
-                        <img src="@item.FullImageUrl" alt="presence" width="100%">
-                        <div class="product-text-row">
-                            <p class="product-name">@item.Name</p>
-                            <p class="product-price">@item.Price</p>
-                            <button class="btnAddToBasket"> Add To Basket</button>
-                        </div>
+              {
+                    <div class="card hvr-shrink scrollreveal" data-catalogItemId="@item.Id">
+                        <a href="/Home/ProductDetails/@item.Id">Посилання на товар
+
+                            <!-- Посилання на сторінку з описом товару -->
+                            <img src="@item.FullImageUrl" alt="presence" width="100%">
+                            <div class="product-text-row">
+                                <p class="product-name">@item.Name</p>
+                                <p class="product-price">@item.Price</p>
+                                <p class="product-size">@item.Size</p>
+                            </div>
+                        </a>
+                        <button class="btnAddToBasket">Add To Basket</button>
                     </div>
                 }
             </div>
@@ -116,6 +121,7 @@
                         <div class="product-text-row">
                             <p class="product-name">@item.Name</p>
                             <p class="product-price">@item.Price</p>
+                            <p class="product-size">@item.Size</p>
                             <button class="btnAddToBasket"> Add To Basket</button>
                         </div>
                     </div>
