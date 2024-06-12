@@ -2,7 +2,6 @@
     let basket = {
         selectedItems: []
     };
-
     let localBasketStr = localStorage.getItem('basket');
     if (localBasketStr != null) {
         basket = JSON.parse(localBasketStr);

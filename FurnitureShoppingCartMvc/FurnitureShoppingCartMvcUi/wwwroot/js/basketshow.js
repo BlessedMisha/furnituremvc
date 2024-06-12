@@ -12,7 +12,7 @@
     }
 
     displayBasketItems();
-   
+
     function displayBasketItems() {
         let basketContainer = document.querySelector('.order-info');
         if (!basketContainer) {

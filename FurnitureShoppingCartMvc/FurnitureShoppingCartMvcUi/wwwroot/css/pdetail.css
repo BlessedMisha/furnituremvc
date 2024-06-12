@@ -1,0 +1,141 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.product-block-info, .product-block {
+    width: 100%;
+}
+
+.product-image img {
+    width: 100%;
+    max-height: 540px;
+    height: 100%;
+}
+
+.product-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+.product-name {
+    font-family: "Reckless Neue";
+    font-size: 35px;
+}
+
+.product-material {
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.product-description {
+    font-size: 17px;
+}
+
+.block-pri-size {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-price {
+    color: #384353;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+.product-size-title {
+    text-transform: uppercase;
+    font-size: 13px;
+    color: #384353;
+}
+
+.product-size {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    height: 25px;
+    color: #384353;
+    font-weight: bold;
+    padding: 2px 0 0;
+}
+
+.btnAddToBasket {
+    height: 38px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    background-color: #384353;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+    .btnAddToBasket:hover {
+        background-color: #5a6b85;
+        color: white;
+    }
+
+    .btnAddToBasket:active {
+        background-color: #384353;
+        color: white;
+    }
+
+@media (min-width: 900px) {
+    .product-image, .product-block {
+        width: 50%;
+    }
+
+    .product-block-info {
+        display: flex;
+    }
+
+    .product-image img {
+        max-height: 600px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .product-block-info {
+        border: 1px solid lightgray;
+    }
+
+    .product-image img {
+        min-height: 690px;
+    }
+
+    .product-image {
+        border-right: 1px solid lightgray;
+        padding: 30px;
+    }
+
+    .product-block {
+        padding: 100px;
+    }
+
+    .product-name {
+        font-size: 65px;
+    }
+
+    .product-material {
+        font-size: 15px;
+    }
+
+    .product-description {
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    .product-price {
+        font-size: 25px;
+    }
+
+    .product-size-title {
+        font-size: 15px;
+    }
+}
