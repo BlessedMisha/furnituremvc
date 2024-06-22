@@ -56,5 +56,17 @@ app.MapControllerRoute(
     name: "productDetails",
     pattern: "{controller=Home}/{action=ProductDetails}/{id?}");
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "admin",
+        pattern: "{controller=Admin}/{action=Orders}/{id?}");
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
+
+
+
 
 app.Run();

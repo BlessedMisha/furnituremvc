@@ -1,5 +1,106 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<FurnitureShoppingCartMvcUi.Models.Order>
 @{
+    Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Orders</title>
+    <link rel="stylesheet" type="text/css" href="~/css/admin.css">
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+</head>
+<body>
+        <header>
+         <nav id="myNavbar">
+                    <a href="404.html" class="nav-logotyp">
+                        mif works
+                    </a alt="union">
+                    <div class="nav-left">
+                        <div id="navLeft">
+                            <div id="iconopen">
+                                <i class="fa-solid fa-bars" style="color: #000000;"></i>
+                            </div>
+                            <div class="hide" id="iconclose">
+                                <i class="fa-solid fa-xmark" style="color: #000000;"></i>
+                            </div>
+                        </div>
+                        <p class="nav-text">shop</p>
+                    </div>
+                    <ul class="mobile-menu hide" id="menu">
+                        <li><a href="aboutus.html">About us</a></li>
+                        <li><a href="404.html">Products</a></li>
+                        <li><a href="shopall.html">Shopall</a></li>
+                        <li><a href="404.html">Articles</a></li>
+                        <li><a href="blog.html">Our club</a></li>
+                    </ul>
+                    <ul class="compnav">
+                        <li><a href="aboutus.html">About us</a></li>
+                        <li><a href="/Home/basket">Products</a></li>
+                        <li><a href="/Home/shopall">Shopall</a></li>
+                        <li><a href="404.html">Articles</a></li>
+                        <li><a href="blog.html">Our club</a></li>
+                    </ul>
+                    <a href="404.html" class="nav-right">
+                        <p class="nav-right">bag</p>
+                        <p class="bag-number">0</p>
+               
+                    </a>
+    <partial name="_LoginPartial" />
+                </nav>
+    </header>
+    <div id="block">
+        <div class="orders">
+            <div class="scrolling">
+                <a href="">&#8249;</a>
+                <span>1</span>
+                <a href="">&#8250;</a>
+            </div>
+            <table id="orders-title">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Order date</th>
+                        <th>Basket</th>
+                        <th>Total price ($)</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="orders-table">
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>@order.Id</td>
+                            <td>@order.FirstName</td>
+                            <td>@order.LastName</td>
+                            <td>@order.Email</td>
+                            <td>@order.Phone</td>
+                            <td>@order.Address</td>
+                            <td>17451</td>
+                            <td>
+                                <ul>
+                                    @foreach (var item in order.OrderItems)
+                                    {
+                                        <li>@item.ItemName - Quantity: @item.Quantity</li>
+                                    }
+                                </ul>
+                            </td>
+                            <td>@order.TotalPrice</td>
+                            <td>status</td>
+                            <td>Actions buttons here</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="~/js/script.js"></script>
+</body>
+</html>
