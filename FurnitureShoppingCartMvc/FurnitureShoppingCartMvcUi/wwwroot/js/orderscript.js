@@ -16,22 +16,21 @@
             };
             items.push(item);
         });
-        // Перевірка, чи корзина порожня
+
         if (items.length === 0) {
             alert("Your basket is empty. Please add items before checking out.");
             return;
         }
-        // Перевірка, чи всі поля заповнені
         if (!firstName || !lastName || !email || !phone || !address) {
             alert("Please fill in all fields before checking out.");
             return;
         }
-        // Перевірка, чи номер телефону складається лише з цифр
         if (!/^\d+$/.test(phone)) {
             alert("Phone number must contain only digits.");
             return;
         }
-        let totalPrice = items.reduce((sum, item) => sum + (item.itemPrice * item.quantity), 0);
+
+        let totalPrice = items.reduce((sum, item) => sum + item.itemPrice * item.quantity, 0);
 
         let orderData = {
             firstName: firstName,
@@ -40,7 +39,7 @@
             phone: phone,
             address: address,
             totalPrice: totalPrice,
-            items: items // Відправляємо всі товари
+            items: items
         };
 
         fetch("/Order/CreateOrder", {
@@ -59,10 +58,8 @@
             .then(data => {
                 console.log("Order created successfully with ID:", data.orderId);
                 initiateLiqPay(data.data, data.signature);
-                // Очистити кошик після успішного оформлення замовлення
                 localStorage.removeItem("basket");
             })
-
             .catch(error => {
                 console.error("There was a problem with your fetch operation:", error.message);
             });

@@ -16,6 +16,9 @@ namespace FurnitureShoppingCartMvcUi.Models
         public string Address { get; set; }
         public decimal TotalPrice { get; set; }
         public string OrderItemsJson { get; set; } /*зберігання списку товарів у вигляді JSON*/
+        public bool IsPaid { get; set; } // Додайте поле для статусу оплати
+        public DateTime OrderDate { get; set; } // Додайте поле для дати замовлення
+
 
         [NotMapped]
         public List<OrderItem> OrderItems // Це властивість для доступу до списку товарів
@@ -31,5 +34,10 @@ namespace FurnitureShoppingCartMvcUi.Models
         public string ItemName { get; set; }
         public decimal ItemPrice { get; set; }
         public int Quantity { get; set; }
+    }
+    public class LiqPayCallbackModel
+    {
+        public int OrderId { get; set; }
+        public string Status { get; set; }
     }
 }

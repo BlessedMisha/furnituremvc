@@ -36,13 +36,14 @@ namespace FurnitureShoppingCartMvcUi.Controllers
                     Phone = orderRequest.Phone,
                     Address = orderRequest.Address,
                     TotalPrice = orderRequest.TotalPrice,
-                    OrderItems = orderRequest.Items
+                    OrderItems = orderRequest.Items,
+                    IsPaid = false,
+                    OrderDate = DateTime.UtcNow
                 };
 
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
 
-                // Генерація даних для LiqPay
                 string publicKey = _configuration["LiqPay:PublicKey"];
                 string privateKey = _configuration["LiqPay:PrivateKey"];
                 var liqPayData = GenerateLiqPayData(order.Id, order.TotalPrice, "USD", publicKey, privateKey);
@@ -71,8 +72,8 @@ namespace FurnitureShoppingCartMvcUi.Controllers
                 currency = currency,
                 description = "Order Payment",
                 order_id = orderId.ToString(),
-                result_url = "http://localhost:5241/",  
-                server_url = "http://localhost:5000/Order/Callback"  
+                result_url = $"http://localhost:5241/Order/Success?orderId={orderId}",
+                server_url = $"http://localhost:5241/api/Order/Callback"
             };
 
             string json = JsonConvert.SerializeObject(paymentData);
@@ -90,28 +91,97 @@ namespace FurnitureShoppingCartMvcUi.Controllers
             return (data, signature);
         }
 
-        [HttpGet("Success")]
-        public IActionResult Success()
+        private bool VerifyLiqPaySignature(string data, string signature)
         {
-            return Ok("Payment was successful!");
+            string privateKey = _configuration["LiqPay:PrivateKey"];
+            string expectedSignature;
+
+            using (var sha1 = new SHA1Managed())
+            {
+                byte[] hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(privateKey + data + privateKey));
+                expectedSignature = Convert.ToBase64String(hash);
+            }
+
+            return signature == expectedSignature;
         }
 
         [HttpPost("Callback")]
-        public IActionResult Callback()
+        public async Task<IActionResult> Callback([FromForm] LiqPayCallbackModel model)
         {
-       
-            return Ok();
-        }
-    }
+            try
+            {
+                string data = Request.Form["data"];
+                string signature = Request.Form["signature"];
 
-    public class OrderRequest
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Address { get; set; }
-        public decimal TotalPrice { get; set; }
-        public List<OrderItem> Items { get; set; }
+                if (!VerifyLiqPaySignature(data, signature))
+                {
+                    Console.WriteLine("Invalid LiqPay signature");
+                    return BadRequest("Invalid LiqPay signature");
+                }
+
+                string decodedData = Encoding.UTF8.GetString(Convert.FromBase64String(data));
+                dynamic paymentData = JsonConvert.DeserializeObject(decodedData);
+
+                int orderId = int.Parse(paymentData.order_id.ToString());
+                string status = paymentData.status;
+
+                Console.WriteLine($"Received LiqPay callback for order ID: {orderId}, status: {status}");
+
+                var order = await _context.Orders.FindAsync(orderId);
+                if (order == null)
+                {
+                    return NotFound();
+                }
+
+                if (status == "success")
+                {
+                    order.IsPaid = true;
+                    await _context.SaveChangesAsync();
+                }
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in processing LiqPay callback: {ex.Message}");
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpGet("Success")]
+        public async Task<IActionResult> Success(int orderId)
+        {
+            try
+            {
+                var order = await _context.Orders.FindAsync(orderId);
+                if (order == null)
+                {
+                    return NotFound();
+                }
+
+                if (!order.IsPaid)
+                {
+                    order.IsPaid = true;
+                    await _context.SaveChangesAsync();
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        public class OrderRequest
+        {
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string Email { get; set; }
+            public string Phone { get; set; }
+            public string Address { get; set; }
+            public decimal TotalPrice { get; set; }
+            public List<OrderItem> Items { get; set; }
+        }
     }
 }
