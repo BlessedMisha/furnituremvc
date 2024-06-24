@@ -34,5 +34,6 @@ namespace FurnitureShoppingCartMvcUi.Data
 
             base.OnModelCreating(builder);
         }
+        public DbSet<Subscriber> Subscribers { get; set; }
     }
 }

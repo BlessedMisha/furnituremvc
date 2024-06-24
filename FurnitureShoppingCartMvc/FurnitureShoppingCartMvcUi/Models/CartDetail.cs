@@ -26,6 +26,7 @@ public class CatalogItem
     public string Name { get; set; }
     public string Size{ get; set; }
     public string Description { get; set; }
+    public string Material { get; set; }
     public decimal Price { get; set; }
     public string ImageUrl { get; set; }
 
@@ -39,6 +40,7 @@ public class CatalogItemModel
     public string Description { get; set; }
     public decimal Price { get; set; }
     public string FullImageUrl { get; set; }
+    public string Material { get; set; }
 }
 
 public static class TransformExtensions
@@ -53,6 +55,7 @@ public static class TransformExtensions
             FullImageUrl = entity.ImageUrl,
             Size = entity.Size,
             Description = entity.Description,
+            Material = entity.Material,
         };
     }
 }

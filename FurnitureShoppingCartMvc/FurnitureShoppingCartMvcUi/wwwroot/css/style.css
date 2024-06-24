@@ -3,6 +3,38 @@
   padding: 0;
   box-sizing: border-box;
 }
+/*login*/
+.user-greeting {
+    display: flex; /* Використовуємо flexbox для розміщення елементів */
+    align-items: center; /* Вирівнюємо елементи по вертикалі */
+}
+
+.text {
+    margin-right: 10px; /* Відступ для тексту */
+}
+
+.icon {
+    display: inline-block; /* За замовчуванням іконка прихована */
+    width: 20px; /* Задаємо ширину іконки */
+    height: 20px; /* Задаємо висоту іконки */
+    padding:1px;
+    padding-right:5px;
+}
+
+/* Медіа-запит для зміни на іконку при зменшенні до телефону */
+@media (max-width: 768px) {
+    .text {
+        display: none; /* Приховуємо текст при зменшенні до телефону */
+    }
+
+    .icon {
+        display: inline-block; /* Показуємо іконку */
+    }
+}
+/*login*/
+
+
+
 
 .hide {
   display: none;

@@ -1,5 +1,27 @@
 ﻿@model List<CatalogItemModel>
 
+    <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#subscribeForm').submit(function (event) {
+                event.preventDefault(); // Запобігає звичайному відправленню форми
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Home/Subscribe',
+                    data: $(this).serialize(), // Серіалізація даних форми
+                    success: function (response) {
+                        alert('Thank you for subscribing! Check your email for confirmation.');
+                    },
+                    error: function (error) {
+                        alert('There was an error. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
     <div class="body-wrapper">
         <header>
             <div class="backimg">
@@ -496,7 +518,7 @@
                 </div>
             </div>
         </div>
-        <section class="club-block">
+        @* <section class="club-block">
             <div class="partclub-section" id="partclub-section">
                 <div class="partclub-block">
                     <p class="partclub-text hvr-shrink scrollreveal">Be part of our club <br>for discount</p>
@@ -506,7 +528,20 @@
                 </div>
             </div>
         </section>
-
+ *@
+<section class="club-block">
+    <div class="partclub-section" id="partclub-section">
+        <div class="partclub-block">
+            <p class="partclub-text hvr-shrink scrollreveal">Be part of our club <br>for discount</p>
+            <div class="your-email hvr-shrink">
+                <form id="subscribeForm">
+                    <input type="email" name="Email" placeholder="YOUR EMAIL" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="js/wrapperbrand.js"></script>
     <script src="js/basket.js"></script>
