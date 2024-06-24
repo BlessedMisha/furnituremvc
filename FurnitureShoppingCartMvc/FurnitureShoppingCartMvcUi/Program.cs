@@ -55,6 +55,12 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "productDetails",
     pattern: "{controller=Home}/{action=ProductDetails}/{id?}");
+app.MapControllerRoute(
+    name: "blog",
+    pattern: "{controller=Home}/{action=Blog}/{id?}");
+app.MapControllerRoute(
+    name: "aboutus",
+    pattern: "{controller=Home}/{action=Aboutus}/{id?}");
 
 app.UseEndpoints(endpoints =>
 {

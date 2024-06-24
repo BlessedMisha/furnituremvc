@@ -29,6 +29,22 @@ namespace FurnitureShoppingCartMvcUi.Controllers
 
             return View(catalogItems);
         }
+        public IActionResult Blog()
+        {
+            var catalogItems = _dbContext.CatalogItems
+                .Select(e => e.Transform())
+                .ToList();
+
+            return View(catalogItems);
+        }
+        public IActionResult Aboutus()
+        {
+            var catalogItems = _dbContext.CatalogItems
+                .Select(e => e.Transform())
+                .ToList();
+
+            return View(catalogItems);
+        }
         public IActionResult ProductDetails(int id)
         {
             var catalogItem = _dbContext.CatalogItems.Find(id);

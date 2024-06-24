@@ -17,9 +17,7 @@
 <body>
     <header>
          <nav id="myNavbar">
-                    <a href="404.html" class="nav-logotyp">
-                        mif works
-                    </a alt="union">
+                        <a href="~/home/index" class="nav-logotyp" alt="union">mif works</a >
                     <div class="nav-left">
                         <div id="navLeft">
                             <div id="iconopen">
@@ -32,18 +30,16 @@
                         <p class="nav-text">shop</p>
                     </div>
                     <ul class="mobile-menu hide" id="menu">
-                        <li><a href="aboutus.html">About us</a></li>
-                        <li><a href="404.html">Products</a></li>
-                        <li><a href="/Home/shopall">Shopall</a></li>
-                        <li><a href="404.html">Articles</a></li>
-                        <li><a href="blog.html">Our club</a></li>
+                        <li><a href="~/home/aboutus">About us</a></li>
+                        <li><a href="~/home/basket">Cart</a></li>
+                        <li><a href="~/Home/shopall">Shopall</a></li>
+                        <li><a href="~/home/blog">Our club</a></li>
                     </ul>
                     <ul class="compnav">
-                        <li><a href="aboutus.html">About us</a></li>
-                        <li><a href="/Home/basket">Products</a></li>
-                        <li><a href="/Home/shopall">Shopall</a></li>
-                        <li><a href="404.html">Articles</a></li>
-                        <li><a href="blog.html">Our club</a></li>
+                        <li><a href="~/home/aboutus">About us</a></li>
+                        <li><a href="~/home/basket">Cart</a></li>
+                        <li><a href="~/Home/shopall">Shopall</a></li>
+                        <li><a href="~/home/blog">Our club</a></li>
                     </ul>
                     <a href="/Home/basket" class="nav-right">
                         <p class="nav-right">bag</p>
@@ -117,7 +113,7 @@
                 </div>
             </div>
             <div class="footer-image">
-                <img src="media/Union-footer.webp" alt="presence">
+                <img src="~/media/Union-footer.webp" alt="presence">
             </div>
             <div class="arusa-footer-block">
                 <p class="arusa-footer">© arusa 2022 | misha fychak</p>
@@ -127,6 +123,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script> *@
     <script src="~/js/script.js"></script>
+    <script src="~/js/basket.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
