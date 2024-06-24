@@ -1,0 +1,98 @@
+﻿@model IEnumerable<FurnitureShoppingCartMvcUi.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Orders</title>
+    <link rel="stylesheet" type="text/css" href="~/css/admin.css">
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+</head>
+<body>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+
+    <div id="block">
+        <div class="orders">
+            <table id="orders-table" class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Id)</th>
+                        <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                        <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Email)</th>
+                        <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                        <th>@Html.DisplayNameFor(model => model.Address)</th>
+                        <th>@Html.DisplayNameFor(model => model.TotalPrice)</th>
+                        <th>@Html.DisplayNameFor(model => model.OrderItemsJson)</th>
+                        <th>@Html.DisplayNameFor(model => model.IsPaid)</th>
+                        <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                            <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
+                            <td>@Html.DisplayFor(modelItem => item.OrderItemsJson)</td>
+                            <td>@Html.DisplayFor(modelItem => item.IsPaid)</td>
+                            <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="scrolling">
+                @if (ViewData["CurrentPage"] != null && ViewData["TotalPages"] != null)
+                {
+                    int currentPage = (int)ViewData["CurrentPage"];
+                    int totalPages = Convert.ToInt32(ViewData["TotalPages"]);
+
+                    <a id="prevPage" href="@Url.Action("Index", new { page = currentPage - 1 })" @(currentPage == 1 ? "disabled" : "")>&#8249;</a>
+                    <span>Page @currentPage of @totalPages</span>
+                    <a id="nextPage" href="@Url.Action("Index", new { page = currentPage + 1 })" @(currentPage == totalPages ? "disabled" : "")>&#8250;</a>
+                }
+            </div>
+        </div>
+    </div>
+
+  
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('prevPage')?.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (!this.hasAttribute('disabled')) {
+                    window.location.href = this.getAttribute('href');
+                }
+            });
+
+            document.getElementById('nextPage')?.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (!this.hasAttribute('disabled')) {
+                    window.location.href = this.getAttribute('href');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
