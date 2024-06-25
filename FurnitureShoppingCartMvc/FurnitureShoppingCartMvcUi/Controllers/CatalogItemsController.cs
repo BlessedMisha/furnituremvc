@@ -55,7 +55,7 @@ namespace FurnitureShoppingCartMvcUi.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Size,Description,Price,ImageUrl")] CatalogItem catalogItem)
+        public async Task<IActionResult> Create([Bind("Id,Name,Size,Description,Price,ImageUrl,Material")] CatalogItem catalogItem)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace FurnitureShoppingCartMvcUi.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Size,Description,Price,ImageUrl")] CatalogItem catalogItem)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Size,Description,Price,ImageUrl,Material")] CatalogItem catalogItem)
         {
             if (id != catalogItem.Id)
             {

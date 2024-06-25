@@ -507,8 +507,8 @@ nav {
 .right-bed {
   width: 100px;
   height: 93px;
-  left: 90%;
-  top: 220px;
+  left: 95%;
+  top: 210px;
   position: absolute;
 }
 
@@ -1232,7 +1232,9 @@ footer {
   align-self: flex-start;
   justify-self: flex-start;
 }
-
+a {
+    color: black;
+}
 .cards-blocks {
   display: flex;
   flex-direction: row;

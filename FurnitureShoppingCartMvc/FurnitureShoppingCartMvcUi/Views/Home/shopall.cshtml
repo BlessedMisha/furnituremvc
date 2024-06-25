@@ -37,15 +37,17 @@
                     <div class="cards-blocks">
                         @foreach (var item in Model) // Пройтися по всіх елементах моделі
                         {
-
                         <div class="card hvr-shrink scrollreveal" data-catalogItemId=@item.Id>
+                            <a href="/Home/ProductDetails/@item.Id">
                                 <img src="/@item.FullImageUrl" alt="presence" width="100%">
                             <div class="product-text-row">
                                     <p class="product-name">@item.Name</p>
                                     <p class="product-price">@item.Price</p>
                                     <p class="product-price">@item.Size</p>
+                     
                                     <button class="btnAddToBasket"> Add To Basket</button>
                              </div>
+                        </a>
                         </div>
                         }
                  </div>
