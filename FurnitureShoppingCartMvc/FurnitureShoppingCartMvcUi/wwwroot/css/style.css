@@ -18,9 +18,12 @@
     width: 20px; /* Задаємо ширину іконки */
     height: 20px; /* Задаємо висоту іконки */
     padding:1px;
-    padding-right:5px;
+    margin-left:20px;
+    /*padding-right:5px;*/
 }
-
+.icon{
+    display:none
+}
 /* Медіа-запит для зміни на іконку при зменшенні до телефону */
 @media (max-width: 768px) {
     .text {
@@ -29,6 +32,8 @@
 
     .icon {
         display: inline-block; /* Показуємо іконку */
+        margin-left:0:
+
     }
 }
 /*login*/
