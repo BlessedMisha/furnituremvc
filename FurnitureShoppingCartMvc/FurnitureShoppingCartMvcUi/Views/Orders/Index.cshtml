@@ -20,7 +20,7 @@
     </nav>
 </header>
 <body>
-    <p>
+    <p class="createbut">
         <a asp-action="Create">Create New</a>
     </p>
 
@@ -54,7 +54,17 @@
                             <td>@Html.DisplayFor(modelItem => item.Address)</td>
                             <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
                             <td>@Html.DisplayFor(modelItem => item.OrderItemsJson)</td>
-                            <td>@Html.DisplayFor(modelItem => item.IsPaid)</td>
+                            <td>
+                                @if (item.IsPaid)
+                                {
+                                    <span class="text-success">Order paid</span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger">Order not paid</span>
+                                }
+                            </td>
+
                             <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

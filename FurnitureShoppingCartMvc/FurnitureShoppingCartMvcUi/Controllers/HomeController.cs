@@ -65,7 +65,9 @@ namespace FurnitureShoppingCartMvcUi.Controllers
             var catalogItems = _dbContext.CatalogItems
                 .Select(e => e.Transform())
                 .ToList();
+            int productCount = _context.CatalogItems.Count(); // Отримання кількості товарів з бази даних
 
+            ViewData["ProductCount"] = productCount;
             return View(catalogItems);
         }
         public IActionResult Basket()
@@ -102,6 +104,36 @@ namespace FurnitureShoppingCartMvcUi.Controllers
             }
 
             return BadRequest(ModelState);
+        }
+
+        [HttpGet("shopall/filterbymaterial/{material}")]
+        public IActionResult FilterByMaterial(string material)
+        {
+            var filteredProducts = _dbContext.CatalogItems
+                .Where(p => p.Material == material)
+                .ToList();
+
+            return View("shopall", filteredProducts);
+        }
+
+        [HttpGet("shopall/filterbyminprice")]
+        public IActionResult FilterByMinPrice(decimal minPrice)
+        {
+            var filteredProducts = _dbContext.CatalogItems
+                .Where(p => p.Price >= minPrice)
+                .ToList();
+
+            return View("shopall", filteredProducts);
+        }
+
+        [HttpGet("shopall/filterbymaxprice")]
+        public IActionResult FilterByMaxPrice(decimal maxPrice)
+        {
+            var filteredProducts = _dbContext.CatalogItems
+                .Where(p => p.Price <= maxPrice)
+                .ToList();
+
+            return View("shopall", filteredProducts);
         }
 
         private void SendConfirmationEmail(string email)

@@ -1,5 +1,6 @@
 ﻿using FurnitureShoppingCartMvcUi.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FurnitureShoppingCartMvcUi.Controllers
 {
@@ -48,10 +49,42 @@ namespace FurnitureShoppingCartMvcUi.Controllers
             {
                 return NotFound();
             }
-
-          
-
             return RedirectToAction("Index", "shopcart");
         }
+        public IActionResult Search(string searchString)
+        {
+            // Отримати всі товари, які містять введений рядок в назві
+            var filteredProducts = _context.CatalogItems
+                .Where(p => p.Name.Contains(searchString))
+                .Select(p => new CatalogItemModel
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    FullImageUrl=p.ImageUrl,
+                    // Додайте інші властивості CatalogItemModel, які вам потрібні
+                })
+                .ToList();
+
+            ViewData["FilterType"] = "Search"; // Додати тип фільтрації до ViewData
+
+            // Отримати загальний список продуктів для відображення у боці
+            var allProducts = _context.CatalogItems
+                .Select(p => new CatalogItemModel
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    FullImageUrl = p.ImageUrl,
+                    // Додайте інші властивості CatalogItemModel, які вам потрібні
+                })
+                .ToList();
+
+            // Передати усі дані у представлення
+            ViewData["ProductCount"] = allProducts.Count;
+            return View("~/Views/Home/shopall.cshtml", filteredProducts);
+        }
+
+
     }
 }
